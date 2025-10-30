@@ -65,3 +65,28 @@ exports.create = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.show = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const compra = await Compra.findByPk(id, {
+            include: [
+                {
+                    model: Bicicleta,
+                    through: { attributes: ['cantidad', 'subtotal']}
+                }
+            ]
+        });
+
+        if(!compra) {
+            return res.status(404).send('Compra no encontrada')
+        }
+
+        const datosCompra = compra.get({ plain: true })
+
+        res.render('compras/show', { compra: datosCompra })
+    } catch (error) {
+        next(error)
+    }
+}
