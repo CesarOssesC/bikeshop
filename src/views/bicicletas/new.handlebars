@@ -1,0 +1,38 @@
+<div class="container">
+<h1 class="text-center my-5">Crear Bicicleta</h1>
+    <div class="border p-5">
+        <form action="/bicicletas" method="POST">
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" name="marca" class="form-control" id="marca" required>
+            </div>
+            <div class="mb-3">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" name="modelo" class="form-control" id="modelo" required>
+            </div>
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo</label>
+                <select name="tipo" id="tipo" class="form-select" required>
+                    <option value="mtb">MTB</option>
+                    <option value="ruta">Ruta</option>
+                    <option value="enduro">Enduro</option>
+                    <option value="trail">Trail</option>
+                    <option value="bmx">BMX</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" name="precio" class="form-control" id="precio" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" name="disponible" class="form-check-input" id="disponible">
+                <label for="disponible" class="form-check-label">Disponible?</label>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Año</label>
+                <input type="number" name="year" class="form-control" id="year" required>
+            </div>
+            <button class="mb-3 btn btn-primary">Crear</button>
+        </form>
+    </div>
+</div>

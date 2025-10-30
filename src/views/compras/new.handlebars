@@ -1,0 +1,35 @@
+<div class="container my-5">
+    <h1 class="text-center mb-5">Generar Compra</h1>
+    <form action="/compras" method="POST">
+        <table class="table mb-5">
+            <thead>
+                <tr>
+                    <th>Seleccionar</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tbody>
+                    {{#each bicicletas}}
+                        <tr>
+                            <td><input type="checkbox" name="bicicletasSeleccionadas" value="{{this.id}}"></td>
+                            <td>{{this.marca}}</td>
+                            <td>{{this.modelo}}</td>
+                            <td class="precio" data-precio="{{this.precio}}">${{this.precio}}</td>
+                            <td><input type="number" name="cantidad_{{this.id}}" value="1" min="1" class="cantidad"></td>
+                            <td class="subtotal">$0.00</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </thead>
+        </table>
+        <div class="d-flex justify-content-end mb-5">
+            <a href="/compras" class="btn btn-dark me-2">Cancelar</a>
+            <button type="submit" class="btn btn-info">Guardar Compra</button>
+        </div>
+    </form>
+</div>
+
+<script src="/js/main.js"></script>

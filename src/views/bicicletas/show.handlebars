@@ -1,0 +1,42 @@
+{{> flash }}
+<div class="container">
+    <h1 class="my-5 text-center">Detalles bicicleta id: {{bicicleta.id}}</h1>
+    
+    <div class="card mb-5">
+        <div class="card-body">
+            <h5 class="card-title">{{bicicleta.marca}}</h5>
+            <p class="card-text">{{bicicleta.modelo}}</p>
+            <p class="card-text">{{bicicleta.precio}}</p>
+            <p class="card-text">{{bicicleta.tipo}}</p>
+            <p class="card-text">{{bicicleta.year}}</p>
+            <p class="card-text">{{#if bicicleta.disponible}}Si{{else}}No{{/if}}</p>
+            <a class="btn btn-warning" href="/bicicletas/{{bicicleta.id}}/edit">Editar</a>
+            <form action="/bicicletas/{{bicicleta.id}}?_method=DELETE" method="POST" class="d-inline-block">
+                <button class="btn btn-sm btn-danger" type="submit"
+                    onclick="return confirm('Seguro deseas eliminar esta bicicleta?')">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    
+    <a class="btn btn-dark" href="/">Volver al listado</a>
+
+    <hr>
+
+    <h3 class="my-5">Reseñas</h3>
+    <div class="mb-3">
+        <a href="/reviews/new?bicicletaId={{bicicleta.id}}" class="btn btn-info">Nueva Reseña</a>
+    </div>
+    {{#if bicicleta.reviews.length}}
+        <ul class="list-group mb-5">
+            {{#each bicicleta.reviews}}
+                <li class="list-group-item mb-5">
+                    <p><strong>Comentario: </strong>{{this.comentario}}</p>
+                    <p><strong>Calificacion: </strong>{{this.calificacion}} / 5</p>
+                    <p><strong>Fecha: </strong>{{this.updatedAt}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No hay reseñas para esta bicicleta</p>
+    {{/if}}
+</div>

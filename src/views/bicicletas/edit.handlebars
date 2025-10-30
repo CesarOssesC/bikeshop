@@ -1,0 +1,39 @@
+<div class="container">
+    <h1 class="text-center my-5">Editar Bicicleta id: {{bicicleta.id}}</h1>
+    <div class="border p-5">
+        <form action="/bicicletas/{{bicicleta.id}}?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" name="marca" class="form-control" id="marca" value="{{bicicleta.marca}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" name="modelo" class="form-control" id="modelo" value="{{bicicleta.modelo}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo</label>
+                <select name="tipo" id="tipo" class="form-select" required>
+                    {{#each tipos}}
+                        <option value="{{value}}" {{#if selected}}selected{{/if}}>{{value}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" name="precio" class="form-control" id="precio" value="{{bicicleta.precio}}" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" name="disponible" class="form-check-input" id="disponible" {{#if bicicleta.disponible}}checked{{/if}}>
+                <label for="disponible" class="form-check-label">Disponible?</label>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Año</label>
+                <input type="number" name="year" class="form-control" id="year" value="{{bicicleta.year}}" required>
+            </div>
+            <div class="">
+                <button class="mb-3 btn btn-warning">Actualizar</button>
+                <a href="/bicicletas" class="btn btn-dark">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

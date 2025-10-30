@@ -1,0 +1,19 @@
+<div class="container">
+    <h1 class="text-center my-5">Nueva Reseña</h1>
+    <div class="border p-5">
+        <form action="/reviews" method="POST">
+            <input type="hidden" name="bicicletaId" value="{{bicicletaId}}">
+            <div class="mb-3">
+                <label for="comentario" class="form-label">Comentario</label>
+                <textarea name="comentario" class="form-control" id="comentario" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="calificacion" class="form-label">Calificacion (entre 1 y 5)</label>
+                <input type="number" name="calificacion" min="1" max="5" class="form-control" id="calificacion" required>
+            </div>
+            
+            <button type="submit" class="mb-3 btn btn-info">Guardar</button>
+            <a href="/bicicletas/{{bicicletaId}}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

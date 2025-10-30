@@ -1,0 +1,32 @@
+{{> flash }}
+<div class="container">
+    <h1 class="my-5">Listado de bicicletas</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Año</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each bicicletas as |bicicleta|}}
+                <tr>
+                    <td>{{bicicleta.marca}}</td>
+                    <td>{{bicicleta.modelo}}</td>
+                    <td>{{bicicleta.precio}}</td>
+                    <td>{{bicicleta.year}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/bicicletas/{{bicicleta.id}}">Detalles</a>
+                        <a class="btn btn-sm btn-warning" href="/bicicletas/{{bicicleta.id}}/edit">Editar</a>
+                        <form action="/bicicletas/{{bicicleta.id}}?_method=DELETE" method="POST" class="d-inline-block">
+                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Seguro deseas eliminar esta bicicleta?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
