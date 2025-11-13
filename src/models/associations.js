@@ -2,6 +2,7 @@ const Bicicleta = require('./Bicicleta')
 const Review = require('./Review')
 const Compra = require('./Compra')
 const CompraBicicleta = require('./CompraBicicleta')
+const Usuario = require('./Usuario')
 const sequelize = require('../config/db')
 
 
@@ -15,6 +16,28 @@ Review.belongsTo(Bicicleta, {
     foreignKey: 'bicicletaId',
     onDelete: 'CASCADE'
 });
+
+//Relacion entre usuarios y reviews
+Usuario.hasMany(Review, {
+    foreignKey: 'usuarioId',
+    onDelete: 'SET NULL'
+});
+
+Review.belongsTo(Usuario, {
+    foreignKey: 'usuarioId',
+    onDelete: 'SET NULL'
+})
+
+//relacion entre usuarios y compras
+Usuario.hasMany(Compra, {
+    foreignKey: 'usuarioId',
+    onDelete: 'SET NULL'
+});
+
+Compra.belongsTo(Usuario, {
+    foreignKey: 'usuarioId',
+    onDelete: 'SET NULL'
+})
 
 //Relacion muchos a muchos entre bicicletas y compras
 Compra.belongsToMany(Bicicleta, {
@@ -34,5 +57,6 @@ module.exports = {
     Bicicleta,
     Review,
     Compra,
-    CompraBicicleta
+    CompraBicicleta,
+    Usuario
 }
