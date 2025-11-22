@@ -10,6 +10,13 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                 <a class="nav-link" href="/bicicletas/new">Crear Bicicleta</a>
                 <a class="nav-link" href="/compras">Compras</a>
+                {{#if usuario}}
+                    <span class="nav-link">Bienvenido, {{usuario.nombre}}</span>
+                    <a class="nav-link" href="/auth/logout">Logout</a>
+                {{else}}
+                    <a class="nav-link" href="/auth/register">Registrase</a>
+                    <a class="nav-link" href="/auth/login">Iniciar Sesión</a>
+                {{/if}}
             </div>
         </div>
     </div>
