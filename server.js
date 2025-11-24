@@ -4,7 +4,7 @@ const path = require("path")
 const methodOverride = require("method-override")
 const cookieParser = require('cookie-parser')
 // const { expressjwt } = require('express-jwt')
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 const bicicletasRouter = require('./src/routes/bicicletas')
 const reviewsRouter = require('./src/routes/reviews')
@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
     res.status(500).send("Algo malió sal...")
 })
 
-sequelize.sync({ alter: true })
+sequelize.sync({ alter: process.env.NODE_ENV !== "production" })
     .then(() => {
         console.log('Base de datos ha sido sincronizada')
         app.listen(PORT, () => {

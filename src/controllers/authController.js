@@ -42,7 +42,7 @@ exports.registerUser = async (req, res) => {
 }
 
 exports.loginForm = (req, res) => {
-    res.render("auth/login")
+    res.render("auth/login", { error: req.query.error })
 }
 
 exports.loginUser = async (req, res, next) => {

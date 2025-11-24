@@ -24,8 +24,8 @@ function requireAuth(req, res, next) {
 
 function requireRole(role) {
     return (req, res, next) => {
-        if (!req.auth || !req.auth.rol !== role) {
-            return res.status(403).send('No tienes permisos')
+        if (!req.auth || req.auth.rol !== role) {
+            return res.status(403).redirect("/bicicletas?error=No tienes permisos para ver esta página debido a tu rol")
         }
         next()
     }

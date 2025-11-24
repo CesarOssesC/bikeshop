@@ -1,4 +1,5 @@
 const { Bicicleta, Review } = require('../models/associations')
+const { requireAuth, requireRole } = require('../middlewares/auth')
 
 exports.index = async (req, res, next) => {
     try {
@@ -7,13 +8,15 @@ exports.index = async (req, res, next) => {
             raw: true
         })
         const { success } = req.query
-        res.render('bicicletas/index', { bicicletas, success })
+        res.render('bicicletas/index', { bicicletas, success, error: req.query.error })
     } catch (error) {
         next(error)
     }
 } 
 
-exports.show = async (req, res, next) => {
+exports.show = [
+    requireAuth, 
+    async (req, res, next) => {
     try {
         const { id } = req.params
         const { success } = req.query
@@ -30,11 +33,13 @@ exports.show = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-}
+}]
 
-exports.new = async (req, res, next) => {
+exports.new = [
+    requireRole("admin"), 
+    async (req, res, next) => {
     res.render('bicicletas/new')
-}
+}]
 
 exports.create = async (req, res, next) => {
     const { marca, modelo, tipo, precio, disponible, year } = req.body
